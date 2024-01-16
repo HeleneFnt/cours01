@@ -1,0 +1,38 @@
+
+html {
+    font-family: "Gill Sans", sans-serif;
+    color: rgb(142, 68, 173);
+  }
+  .Boutons {
+    display : flex;
+    justify-content: space-evenly;
+  }
+
+  h1 {
+    Font-family: "Georgia", serif;
+    color: white ;
+    text-align: center;
+    background-color: midnightblue;
+  }
+.Description {
+    text-align: center;
+}
+
+.Formulaire{
+  text-align: center;
+  border:1px solid rgb(142, 68, 173);
+  margin: 3px;
+  padding: 3px;
+}
+.Source {
+  text-align: center;
+}
+
+.Bouton {
+  margin: 3px;
+  padding: 6px;
+}
+
+p{ 
+  text-align: center ;
+}

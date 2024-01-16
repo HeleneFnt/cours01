@@ -1,0 +1,17 @@
+html {
+    font-family: "Gill Sans", sans-serif;
+    color: rgb(142, 68, 173);
+  }
+  .Boutons {
+    display : flex;
+    justify-content: space-evenly;
+  }
+  h1 {
+    Font-family: "Georgia", serif;
+    color: white ;
+    text-align: center;
+    background-color: midnightblue;
+  }
+.Description {
+    text-align: center;
+}
