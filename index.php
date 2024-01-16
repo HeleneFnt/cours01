@@ -1,16 +1,6 @@
 <?php include 'header.php'; ?>
 
 <body>
-<header>
-    <div class="Boutons">
-        <form action="hobby.html">
-            <button type="submit"> Mon hobby </button>
-        </form>
-        <form action="contact.html">
-            <button type="submit"> Me contacter </button>
-        </form>
-    </div>
-</header>
 
 <h1> Étudiante DevOps </h1>
 
@@ -96,5 +86,9 @@
     </div>
 </section>
 </body>
+
+
+
+<?php include 'footer.php';?>
 
 </html>
