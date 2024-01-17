@@ -1,8 +1,9 @@
-<?php include 'header.php'; ?>
+<?php $metaTitle = 'Hobby'; ?>
+
+<?php $metaDescription ='La marche';?>
 
 <body>
-
-
+<?php include 'header.php'; ?>
 <div class="Titre">
     <h1> La randonnée </h1>
 </div>
@@ -21,7 +22,6 @@
             allowfullscreen></iframe>
 </div>
 
-</body>
 <?php include 'footer.php';?>
-</html>
+</body>
 

@@ -1,5 +1,10 @@
-<?php include 'header.php'; ?>
+<?php $metaTitle = 'Contact'; ?>
+
+<?php $metaDescription ='Me contacter';?>
+
 <body>
+
+<?php include 'header.php'; ?>
 
 <div class="Formulaire">
     <h1> Me contacter </h1>
@@ -55,5 +60,6 @@
         href="https://www.google.com/maps/search/M3+Rovaltain+1+rue+Roland+Moreno+26300+Alixan/@44.9921948,4.9779401,17z/data=!3m1!4b1?entry=ttu"
         target="blank">ici</a>
 </p>
-</body>
 <?php include 'footer.php';?>
+</body>
+
