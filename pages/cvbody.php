@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="Photo">
-        <img src="2023-2024_PHOTO_FINOT.jpg" alt="Photo de profil">
+        <img src="pages/2023-2024_PHOTO_FINOT.jpg" alt="Photo de profil">
     </div>
 </div>
 
