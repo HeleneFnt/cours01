@@ -1,5 +1,5 @@
 <?php
-$userPage = $_GET ["page"];
+$userPage = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_URL);
 
     if ($userPage == 'cv')
     {
