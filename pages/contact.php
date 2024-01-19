@@ -2,6 +2,32 @@
 
 <?php $metaDescription ='Me contacter';?>
 
+<?php
+$Civility= filter_input(INPUT_POST, "Civility" );
+//echo $Civility ;
+//echo '<br>';
+$lastName= filter_input(INPUT_POST, "lastName" );
+/*echo $lastName ;
+echo '<br>';*/
+$firstName= filter_input(INPUT_POST, "firstName" );
+/*echo $firstName ;
+echo '<br>';*/
+$email= filter_input(INPUT_POST,"email");
+/*echo $email;
+echo '<br>';*/
+$choice= filter_input(INPUT_POST,"choice");
+/*echo $choice;
+echo '<br>';*/
+$userMessage= filter_input(INPUT_POST,"userMessage");
+/*echo $userMessage;*/
+
+$user = [ $Civility,$lastName, $firstName, $email,$choice,$userMessage];
+//print_r($user);
+date_default_timezone_set("Europe/Paris");
+$date= date("Y-m-d-m-Y-H-i-s");
+file_put_contents('contact_'.$date.'.txt', implode (", ", $user) , FILE_APPEND);
+?>
+
 <body>
 
 <?php include 'header.php'; ?>
@@ -18,30 +44,30 @@
         <label for="Civility"> Civilité </label>
         <select name="Civility" id="Civility" required>
             <option value="" disabled selected hidden>Choisissez </option>
-            <option value="man"> M. </option>
-            <option value="woman"> Mme</option>
+            <option value="Monsieur"> M. </option>
+            <option value="Madame"> Mme</option>
         </select> <br>
         <div>
         <label for="mainID"> Nom </label>
-            <input type="text" id="mainID" name="mainID" placeholder="Votre nom" required> <br>
+            <input type="text" id="mainID" name="lastName" placeholder="Votre nom" required> <br>
         <label for="secondaryID"> Prénom </label>
-            <input type="text" id="secondaryID" name="firstname" placeholder="Votre prénom" required> <br>
+            <input type="text" id="secondaryID" name="firstName" placeholder="Votre prénom" required> <br>
         <label for="Mail"> E-mail </label>
-            <input type="text" id="Mail" name="E-mail" placeholder="Votre E-mail" required> <br>
+            <input type="text" id="Mail" name="email" placeholder="Votre E-mail" required> <br>
         </div>
 
         <div>
             <p> Merci de choisir la raison de votre contact ci-dessous</p>
-            <input type="radio" id="choice1" name="choice" value="work" required="required"/>
+            <input type="radio" id="choice1" name="choice" value="emploi" required="required"/>
             <label for="choice1"> Proposition d'emploi</label>
-            <input type="radio" id="choice2" name="choice" value="work"/>
+            <input type="radio" id="choice2" name="choice" value="informations"/>
             <label for="choice2"> Demande d'information</label>
-            <input type="radio" id="choice3" name="choice" value="work"/>
+            <input type="radio" id="choice3" name="choice" value="prestations"/>
             <label for="choice3"> Prestations </label>
         </div>
         <div>
             <label for="msg"> Votre message :</label>
-            <textarea id="msg" name="user_message"></textarea>
+            <textarea id="msg" name="userMessage"></textarea>
         </div>
         <div class="Bouton">
             <button type="submit">Soumettre</button>
