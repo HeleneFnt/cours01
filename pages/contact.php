@@ -1,37 +1,44 @@
+<!--//META DONNEES EN PHP-->
 <?php $metaTitle = 'Contact'; ?>
 
 <?php $metaDescription ='Me contacter';?>
 
 <?php
+
+// DECLARATIONS DES VARIABLES DU FORMULAIRE
 $Civility= filter_input(INPUT_POST, "Civility" );
 //echo $Civility ;
 //echo '<br>';
-$lastName= filter_input(INPUT_POST, "lastName" );
+$lastName= filter_input(INPUT_POST, "lastName", FILTER_SANITIZE_SPECIAL_CHARS );
 /*echo $lastName ;
 echo '<br>';*/
-$firstName= filter_input(INPUT_POST, "firstName" );
+$firstName= filter_input(INPUT_POST, "firstName",FILTER_SANITIZE_SPECIAL_CHARS );
 /*echo $firstName ;
 echo '<br>';*/
-$email= filter_input(INPUT_POST,"email");
+$email= filter_input(INPUT_POST,"email", FILTER_VALIDATE_EMAIL);
 /*echo $email;
 echo '<br>';*/
 $choice= filter_input(INPUT_POST,"choice");
 /*echo $choice;
 echo '<br>';*/
 $userMessage= filter_input(INPUT_POST,"userMessage");
+$lengthMessage = strlen(trim ($userMessage));
 /*echo $userMessage;*/
 
 $user = [ $Civility,$lastName, $firstName, $email,$choice,$userMessage];
 //print_r($user);
+
 date_default_timezone_set("Europe/Paris");
 $date= date("Y-m-d-m-Y-H-i-s");
-file_put_contents('contact_'.$date.'.txt', implode (", ", $user) , FILE_APPEND);
+file_put_contents('contact_'.$date.'.txt', implode (" , ", $user) , FILE_APPEND);
+
 ?>
 
+<!--// AJOUT DU HEADER-->
+<?php include 'header.php';
+?>
 <body>
-
-<?php include 'header.php'; ?>
-
+<!--// FORMULAIRE-->
 <div class="Formulaire">
     <h1> Me contacter </h1>
     <form action="contact.php" method="POST">
@@ -42,23 +49,53 @@ file_put_contents('contact_'.$date.'.txt', implode (", ", $user) , FILE_APPEND);
             </p>
         </div>
         <label for="Civility"> Civilité </label>
-        <select name="Civility" id="Civility" required>
+        <select name="Civility" id="Civility">
             <option value="" disabled selected hidden>Choisissez </option>
             <option value="Monsieur"> M. </option>
             <option value="Madame"> Mme</option>
         </select> <br>
+<!--        // TEST CHAMP VIDE CIVILITE-->
+        <?php
+        if (empty ($Civility)){
+            echo "<p> <span class = 'error'>  Veuillez remplir votre civilité </span> </p>";
+        }
+        ?>
         <div>
         <label for="mainID"> Nom </label>
-            <input type="text" id="mainID" name="lastName" placeholder="Votre nom" required> <br>
+            <input type="text" id="mainID" name="lastName" placeholder="Votre nom"> <br>
+            <?php
+            if (empty ($lastName)){
+                echo "<p> <span class = 'error'>  Veuillez remplir votre nom </span> </p>";
+            }
+            ?>
+
         <label for="secondaryID"> Prénom </label>
-            <input type="text" id="secondaryID" name="firstName" placeholder="Votre prénom" required> <br>
-        <label for="Mail"> E-mail </label>
-            <input type="text" id="Mail" name="email" placeholder="Votre E-mail" required> <br>
+            <input type="text" id="secondaryID" name="firstName" placeholder="Votre prénom"> <br>
+            <?php
+            if (empty ($firstName)){
+                echo "<p> <span class = 'error'>  Veuillez remplir votre prénom </span> </p>";
+            }
+            ?>
+
+            <label for="Mail"> E-mail </label>
+            <input type="text" id="Mail" name="email" placeholder="Votre E-mail"> <br>
+            <?php
+            if (empty ($email)){
+            echo " <p> <span class = 'error'> Veuillez remplir votre e-mail</span> </p>";
+            }
+            ?>
         </div>
 
         <div>
             <p> Merci de choisir la raison de votre contact ci-dessous</p>
-            <input type="radio" id="choice1" name="choice" value="emploi" required="required"/>
+            <?php
+            if (empty ($choice)) {
+                echo " <p> <span class = 'error'> Veuillez remplir la raison votre contact </span> </p>";
+                echo "<br>";
+            }
+            ?>
+
+            <input type="radio" id="choice1" name="choice" value="emploi"="required"/>
             <label for="choice1"> Proposition d'emploi</label>
             <input type="radio" id="choice2" name="choice" value="informations"/>
             <label for="choice2"> Demande d'information</label>
@@ -68,6 +105,12 @@ file_put_contents('contact_'.$date.'.txt', implode (", ", $user) , FILE_APPEND);
         <div>
             <label for="msg"> Votre message :</label>
             <textarea id="msg" name="userMessage"></textarea>
+            <?php
+            if (empty($userMessage) || ($lengthMessage <= 5)){
+                echo "<br>";
+                echo "<p> <span class = 'error'> Veuillez remplir le champ vide (min. 5 caratères) </span> </p>";
+            }
+            ?>
         </div>
         <div class="Bouton">
             <button type="submit">Soumettre</button>
@@ -118,4 +161,4 @@ file_put_contents('contact_'.$date.'.txt', implode (", ", $user) , FILE_APPEND);
         target="blank">ici</a>
 </p>
 </body>
-<?php include 'footer.php' ?>
+<?php include 'footer.php';?>

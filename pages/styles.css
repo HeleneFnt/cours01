@@ -2,7 +2,10 @@ html {
     font-family: "Gill Sans", sans-serif;
     color: rgb(142, 68, 173);
   }
-  
+
+.error {
+  color : red;
+}
   .Boutons {
     display : flex;
     justify-content: space-evenly;
