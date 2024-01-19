@@ -9,4 +9,7 @@
         </form>
     </div>
 
+ <p> La première fois que vous vous êtes connecté(e) était le : <?= $_SESSION['dateFirstVisit']; ?> </p>
+
+
 </footer>

@@ -5,6 +5,9 @@
 
 <?php
 
+$date= date("Y-m-d-m-Y-H-i-s");
+
+
 // DECLARATIONS DES VARIABLES DU FORMULAIRE
 $Civility= filter_input(INPUT_POST, "Civility" );
 //echo $Civility ;
@@ -28,8 +31,7 @@ $lengthMessage = strlen(trim ($userMessage));
 $user = [ $Civility,$lastName, $firstName, $email,$choice,$userMessage];
 //print_r($user);
 
-date_default_timezone_set("Europe/Paris");
-$date= date("Y-m-d-m-Y-H-i-s");
+
 file_put_contents('contact_'.$date.'.txt', implode (" , ", $user) , FILE_APPEND);
 
 ?>
@@ -63,6 +65,7 @@ file_put_contents('contact_'.$date.'.txt', implode (" , ", $user) , FILE_APPEND)
         <div>
         <label for="mainID"> Nom </label>
             <input type="text" id="mainID" name="lastName" placeholder="Votre nom"> <br>
+            <!--        // TEST CHAMP VIDE NOM-->
             <?php
             if (empty ($lastName)){
                 echo "<p> <span class = 'error'>  Veuillez remplir votre nom </span> </p>";
@@ -71,6 +74,7 @@ file_put_contents('contact_'.$date.'.txt', implode (" , ", $user) , FILE_APPEND)
 
         <label for="secondaryID"> Prénom </label>
             <input type="text" id="secondaryID" name="firstName" placeholder="Votre prénom"> <br>
+            <!--        // TEST CHAMP VIDE PRENOM-->
             <?php
             if (empty ($firstName)){
                 echo "<p> <span class = 'error'>  Veuillez remplir votre prénom </span> </p>";
@@ -79,6 +83,7 @@ file_put_contents('contact_'.$date.'.txt', implode (" , ", $user) , FILE_APPEND)
 
             <label for="Mail"> E-mail </label>
             <input type="text" id="Mail" name="email" placeholder="Votre E-mail"> <br>
+            <!--        // TEST CHAMP VIDE EMAIL-->
             <?php
             if (empty ($email)){
             echo " <p> <span class = 'error'> Veuillez remplir votre e-mail</span> </p>";
@@ -88,9 +93,10 @@ file_put_contents('contact_'.$date.'.txt', implode (" , ", $user) , FILE_APPEND)
 
         <div>
             <p> Merci de choisir la raison de votre contact ci-dessous</p>
+            <!--        // TEST CHAMP VIDE RAISON DE CONTACT-->
             <?php
             if (empty ($choice)) {
-                echo " <p> <span class = 'error'> Veuillez remplir la raison votre contact </span> </p>";
+                echo " <p> <span class = 'error'> Veuillez remplir la raison votre contact  </span> </p>";
                 echo "<br>";
             }
             ?>
@@ -105,10 +111,11 @@ file_put_contents('contact_'.$date.'.txt', implode (" , ", $user) , FILE_APPEND)
         <div>
             <label for="msg"> Votre message :</label>
             <textarea id="msg" name="userMessage"></textarea>
+            <!--        // TEST CHAMP VIDE MESSAGE-->
             <?php
             if (empty($userMessage) || ($lengthMessage <= 5)){
                 echo "<br>";
-                echo "<p> <span class = 'error'> Veuillez remplir le champ vide (min. 5 caratères) </span> </p>";
+                echo " <p>  <span class = 'error' > Veuillez remplir le champ vide (min. 5 caratères) </span> </p>";
             }
             ?>
         </div>
